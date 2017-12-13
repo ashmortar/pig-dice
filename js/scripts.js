@@ -9,6 +9,18 @@ function Player(name) {
   this.turn = true;
 }
 
+Player.prototype.roll = function() {
+  var roll = dSix();
+  if (roll === 1) {
+    return "end of turn";
+  } else {
+    return roll;
+  }
+}
+
+var playerOne = new Player ("Player 1");
+
+
 
 
 //FRONT END BELOW THIS LINE ----------------
