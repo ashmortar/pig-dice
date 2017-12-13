@@ -10,4 +10,5 @@
 |once stopped total of "rolls" added to "total score" and "turn score" set to 0 | 3, 4, 5| total score = 12 turn score = 0|
 |can detect when total score >= 100| total score 90, roll 5, 5 | total score 100 "you win" |
 |can track 2 different total and turn scores| player 1 , player 2 | player 1 total score, turn score // player 2 total score, turn score|
-|alternates rolls between 2 "players" | player 1 rolls, ends turn | player 2 turn begins|
+|can track turns| player 1 rolls, ends turn | player 2 turn begins|
+|if one total score >= 100 resets to base state| total score = 100 | "you win" player 1 totalScore = 0 and player 2 total score = 0;
