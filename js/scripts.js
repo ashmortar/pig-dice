@@ -10,7 +10,6 @@ function Player(name) {
 }
 
 Player.prototype.roll = function() {
-  debugger;
   var roll = dSix();
   if (roll === 1) {
     this.turnScore = 0;
@@ -32,6 +31,8 @@ Player.prototype.hold = function() {
 }
 
 var playerOne = new Player ("Player 1");
+
+var playerTwo = new Player ("Player 2");
 
 
 
