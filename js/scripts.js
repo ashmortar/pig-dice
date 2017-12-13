@@ -11,12 +11,19 @@ function isOdd(num){
   }
 }
 
+function reset(players){
+  for (var i=0;i<players.length;i++) {
+    var player = players[i];
+    player.turnScore = 0;
+    player.totalScore = 0;
+  }
+}
+
 // player object stuff ---------
 function Player(name) {
   this.name = name;
   this.totalScore = 0;
   this.turnScore = 0;
-  this.turn = true;
 }
 
 Player.prototype.roll = function() {
@@ -41,13 +48,15 @@ Player.prototype.hold = function() {
   console.log("Turn: " + turn);
   if (this.totalScore >= 100) {
     console.log("you win");
+    reset(players);
   }
 }
 
 //Global Variables
-var playerOne = new Player ("Player 1");
 
+var playerOne = new Player ("Player 1");
 var playerTwo = new Player ("Player 2");
+var players = [playerOne, playerTwo];
 
 var turn = 1;
 
