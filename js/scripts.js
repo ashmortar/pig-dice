@@ -13,12 +13,19 @@ Player.prototype.roll = function() {
   var roll = dSix();
   if (roll === 1) {
     this.turnScore = 0;
-    return this.turnScore;
+    console.log(this.turnScore);;
   } else {
     this.turnScore += roll;
-    return this.turnScore;
+    console.log(this.turnScore);;
     //console.log(roll);
   }
+}
+
+Player.prototype.hold = function() {
+  this.totalScore += this.turnScore;
+  this.turnScore = 0;
+  console.log(this.totalScore);
+  console.log(this.turnScore);
 }
 
 var playerOne = new Player ("Player 1");
