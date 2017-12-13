@@ -4,20 +4,20 @@ function dSix(){
 
 function Player(name) {
   this.name = name;
-  this.totalScore = 0;
+  this.totalScore = 90;
   this.turnScore = 0;
   this.turn = true;
 }
 
 Player.prototype.roll = function() {
+  debugger;
   var roll = dSix();
   if (roll === 1) {
     this.turnScore = 0;
-    console.log(this.turnScore);;
+    console.log(this.turnScore);
   } else {
     this.turnScore += roll;
-    console.log(this.turnScore);;
-    //console.log(roll);
+    console.log(this.turnScore);
   }
 }
 
@@ -26,6 +26,9 @@ Player.prototype.hold = function() {
   this.turnScore = 0;
   console.log(this.totalScore);
   console.log(this.turnScore);
+  if (this.totalScore >= 100) {
+    console.log("you win");
+  }
 }
 
 var playerOne = new Player ("Player 1");
