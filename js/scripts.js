@@ -74,16 +74,34 @@ $(document).ready(function() {
   $("#roll").click(function() {
     if (isOdd(turn)) {
       playerOne.roll()
+      $("#playerOneTurnScore").text(playerOne.turnScore);
     } else {
       playerTwo.roll()
+      $("#playerTwoTurnScore").text(playerTwo.turnScore);
+    }
+
+    if (isOdd(turn)){
+      $("#turnArrow").text("<-------------");
+    } else {
+      $("#turnArrow").text("------------->");
     }
   })
 
   $("#hold").click(function() {
     if (isOdd(turn)) {
       playerOne.hold();
+      $("#playerOneTotalScore").text(playerOne.totalScore);
+      $("#playerOneTurnScore").text(playerOne.turnScore);
     } else {
       playerTwo.hold();
+      $("#playerTwoTotalScore").text(playerTwo.totalScore);
+      $("#playerTwoTurnScore").text(playerTwo.turnScore);
+    }
+
+    if (isOdd(turn)){
+      $("#turnArrow").text("<-------------");
+    } else {
+      $("#turnArrow").text("------------->");
     }
   })
 
