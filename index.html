@@ -6,8 +6,38 @@
     <link href="css/styles.css" rel="stylesheet" text="text/css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/scripts.js"></script>
+    <title>Pig Dice</title>
   </head>
   <body>
-    
+    <div class="jumbotron">
+      <h1>Pig Dice</h1>
+      <p>rules of pig dice here</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4" id="player1">
+          <h3>Name: <span id="playerOneName"></span></h3>
+          <h5>Total Score: <span id="playerOneTotalScore"></span></h5>
+        </div>
+        <div class="col-sm-4" id="buttons">
+          <button id="roll" class="btn btn-default">ROLL</button>
+          <button id="hold" class="btn btn-default">HOLD</button>
+        </div>
+        <div class="col-sm-4" id="player2">
+          <h3>Name: <span id="playerTwoName"></span></h3>
+          <h5>Total Score:<span id="playerTwoTotalScore"></span></h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4" id="player1TurnScore">
+          <h4>Turn Score: <span id="player1TurnScore"></span></h4>
+        </div>
+        <div class="col-sm-4" id="turnArrow">
+        </div>
+        <div class="col-sm-4" id="player2TurnScore">
+          <h4>Turn Score: <span id="player2TurnScore"></span></h4>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
