@@ -12,9 +12,12 @@ function Player(name) {
 Player.prototype.roll = function() {
   var roll = dSix();
   if (roll === 1) {
-    return "end of turn";
+    this.turnScore = 0;
+    return this.turnScore;
   } else {
-    return roll;
+    this.turnScore += roll;
+    return this.turnScore;
+    //console.log(roll);
   }
 }
 
