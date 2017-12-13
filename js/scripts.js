@@ -11,14 +11,6 @@ function isOdd(num){
   }
 }
 
-function reset(players){
-  for (var i=0;i<players.length;i++) {
-    var player = players[i];
-    player.turnScore = 0;
-    player.totalScore = 0;
-  }
-}
-
 // player object stuff ---------
 function Player(name) {
   this.name = name;
@@ -46,10 +38,6 @@ Player.prototype.hold = function() {
   console.log(this.name + " total score: " + this.totalScore);
   console.log(this.name + " turn score: " + this.turnScore);
   console.log("Turn: " + turn);
-  if (this.totalScore >= 100) {
-    console.log("you win");
-    reset(players);
-  }
 }
 
 //Global Variables
@@ -62,6 +50,7 @@ var turn = 1;
 
 
 //FRONT END BELOW THIS LINE ----------------
+
 $(document).ready(function() {
   $("#playerOneName").text(playerOne.name);
   $("#playerOneTotalScore").text(playerOne.totalScore);
@@ -92,10 +81,20 @@ $(document).ready(function() {
       playerOne.hold();
       $("#playerOneTotalScore").text(playerOne.totalScore);
       $("#playerOneTurnScore").text(playerOne.turnScore);
+
+      if (playerOne.totalScore >= 100){
+        alert("Player One Wins!");
+        reset(players);
+      }
     } else {
       playerTwo.hold();
       $("#playerTwoTotalScore").text(playerTwo.totalScore);
       $("#playerTwoTurnScore").text(playerTwo.turnScore);
+
+      if (playerTwo.totalScore >= 100){
+        alert("Player Two Wins!")
+        reset(players);
+      }
     }
 
     if (isOdd(turn)){
@@ -104,5 +103,21 @@ $(document).ready(function() {
       $("#turnArrow").text("------------->");
     }
   })
+  function reset(players){
+    for (var i=0;i<players.length;i++) {
+      console.log(players.length);
+      var player = players[i];
+      player.turnScore = 0;
+      player.totalScore = 0;
+      turn = 1;
+    }
+    $("#playerOneName").text(playerOne.name);
+    $("#playerOneTotalScore").text(playerOne.totalScore);
+    $("#playerOneTurnScore").text(playerOne.turnScore);
+    $("#playerTwoName").text(playerTwo.name);
+    $("#playerTwoTotalScore").text(playerTwo.totalScore);
+    $("#playerTwoTurnScore").text(playerTwo.turnScore);
+    $("#turnArrow").text("<-------------");
+  }
 
 });
