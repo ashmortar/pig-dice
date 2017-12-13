@@ -1,3 +1,8 @@
-.jumbotron {
+
+body {
   text-align: center;
+}
+
+#turnArrow {
+  font-size: 30px;
 }

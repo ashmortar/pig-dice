@@ -63,5 +63,28 @@ var turn = 1;
 
 //FRONT END BELOW THIS LINE ----------------
 $(document).ready(function() {
+  $("#playerOneName").text(playerOne.name);
+  $("#playerOneTotalScore").text(playerOne.totalScore);
+  $("#playerOneTurnScore").text(playerOne.turnScore);
+  $("#playerTwoName").text(playerTwo.name);
+  $("#playerTwoTotalScore").text(playerTwo.totalScore);
+  $("#playerTwoTurnScore").text(playerTwo.turnScore);
+  $("#turnArrow").text("<-------------");
+
+  $("#roll").click(function() {
+    if (isOdd(turn)) {
+      playerOne.roll()
+    } else {
+      playerTwo.roll()
+    }
+  })
+
+  $("#hold").click(function() {
+    if (isOdd(turn)) {
+      playerOne.hold();
+    } else {
+      playerTwo.hold();
+    }
+  })
 
 });
