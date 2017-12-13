@@ -19,14 +19,21 @@ function Player(name) {
 }
 
 Player.prototype.roll = function() {
-  var roll = dSix();
-  if (roll === 1) {
+  var roll = [];
+  roll.push(dSix());
+  roll.push(dSix());
+  dieResult = roll;
+  if ((roll[0] === 1) && (roll[1] === 1)) {
     this.turnScore = 0;
+    this.totalScore = 0;
     turn++;
     console.log(this.name + " turn score: " + this.turnScore);
     console.log("Turn: " + turn);
+  } else if ((roll[0] === 1) || (roll[1] === 1)) {
+    this.turnScore = 0;
+    turn++;
   } else {
-    this.turnScore += roll;
+    this.turnScore += (roll[0] + roll[1]);
     console.log(this.name + " turn score: " + this.turnScore);
   }
 }
@@ -47,6 +54,7 @@ var playerTwo = new Player ("Player 2");
 var players = [playerOne, playerTwo];
 
 var turn = 1;
+var dieResult = [];
 
 
 //FRONT END BELOW THIS LINE ----------------
@@ -61,12 +69,25 @@ $(document).ready(function() {
   $("#turnArrow").text("<-------------");
 
   $("#roll").click(function() {
+    $("#hold").prop("disabled", false);
     if (isOdd(turn)) {
       playerOne.roll()
       $("#playerOneTurnScore").text(playerOne.turnScore);
+      $("#playerOneTotalScore").text(playerOne.totalScore);
+      $("#dieOne").text(dieResult[0])
+      $("#dieTwo").text(dieResult[1])
+      if ((dieResult[0] === dieResult[1]) && (dieResult[0] !== 1)) {
+        $("#hold").prop("disabled", true);
+      }
     } else {
       playerTwo.roll()
       $("#playerTwoTurnScore").text(playerTwo.turnScore);
+      $("#playerTwoTotalScore").text(playerTwo.totalScore);
+      $("#dieOne").text(dieResult[0])
+      $("#dieTwo").text(dieResult[1])
+      if ((dieResult[0] === dieResult[1]) && (dieResult[0] !== 1)) {
+        $("#hold").prop("disabled", true);
+      }
     }
 
     if (isOdd(turn)){
@@ -119,5 +140,18 @@ $(document).ready(function() {
     $("#playerTwoTurnScore").text(playerTwo.turnScore);
     $("#turnArrow").text("<-------------");
   }
+
+    $("input:radio[name=playersNumber]").change(function() {
+      $("#hideme").toggle();
+    })
+
+    $("form#form").submit(function(event) {
+      event.preventDefault();
+      playerOne.name = $("#inputPlayerOneName").val();
+      playerTwo.name = $("#inputPlayerTwoName").val();
+      $("form#form").hide();
+      $(".game").show();
+    })
+
 
 });
