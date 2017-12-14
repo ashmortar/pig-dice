@@ -18,7 +18,7 @@ function autoPig() {
   var rolls = 0
   playerTwo.roll();
   rolls++;
-  while (behave - rolls > 0){
+  while ((behave - rolls > 0) && (isOdd(turn) === false)){
     if ((dieResult[0] === dieResult[1]) && (dieResult[0] != 1)){
       playerTwo.roll();
       rolls++;
@@ -54,6 +54,7 @@ Player.prototype.roll = function() {
   } else if ((roll[0] === 1) || (roll[1] === 1)) {
     this.turnScore = 0;
     turn++;
+    console.log("Turn: " + turn);
   } else {
     this.turnScore += (roll[0] + roll[1]);
     console.log(this.name + " turn score: " + this.turnScore);
@@ -98,7 +99,7 @@ $(document).ready(function() {
       $("#playerOneTotalScore").text(playerOne.totalScore);
       $("#dieOne").text(dieResult[0])
       $("#dieTwo").text(dieResult[1])
-      if ((dieResult[0] === dieResult[1]) && (dieResult[0] !== 1)) {
+      if ((dieResult[0] === dieResult[1]) && (dieResult[0] != 1)) {
         $("#hold").prop("disabled", true);
       }
     } else {
@@ -107,7 +108,7 @@ $(document).ready(function() {
       $("#playerTwoTotalScore").text(playerTwo.totalScore);
       $("#dieOne").text(dieResult[0])
       $("#dieTwo").text(dieResult[1])
-      if ((dieResult[0] === dieResult[1]) && (dieResult[0] !== 1)) {
+      if ((dieResult[0] === dieResult[1]) && (dieResult[0] != 1)) {
         $("#hold").prop("disabled", true);
       }
     }
