@@ -14,22 +14,38 @@ function isOdd(num){
 function autoPig() {
   console.log("AUTOPIG ACTIVATE.");
   //debugger;
-  var behave = Math.floor(Math.random() * 10 + 1)
+  var behave = (Math.floor(Math.random() * 10 + 1))
   var rolls = 0
   playerTwo.roll();
+  console.log("autoPig rolled: " + dieResult);
   rolls++;
-  while ((behave - rolls > 0) && (isOdd(turn) === false)){
+  while ((behave + rolls > 0) && (isOdd(turn) === false)){
     if ((dieResult[0] === dieResult[1]) && (dieResult[0] != 1)){
       playerTwo.roll();
+      console.log("autoPig rolled: " + dieResult);
       rolls++;
 
-    }else if (behave-rolls > 3){
+    }else if (behave+rolls < aggro(playerOne.totalScore, playerTwo.totalScore)){
       playerTwo.roll();
+      console.log("autoPig rolled: " + dieResult);
       rolls++;
     } else {
       playerTwo.hold();
+      console.log("autoPig held: " + playerTwo.totalScore);
       break;
     }
+  }
+  console.log("autoPig rolls: " + rolls);
+}
+
+function aggro(score1, score2){
+  var scoreDiff = score1 - score2 ;
+  var aggression = Math.floor(scoreDiff/10);
+
+  if (aggression < 0){
+    return 10;
+  } else {
+    return aggression;
   }
 }
 
