@@ -125,7 +125,7 @@ $(document).ready(function() {
       $("#turnArrow").text("<-------------");
 
       if (playerTwo.totalScore >= 100){
-        alert("Player Two Wins!");
+        alert("autoPig IS VICTORIOUS.");
         $("form#form").show();
         $(".game").hide();
         reset(players);
@@ -172,7 +172,7 @@ $(document).ready(function() {
       $("#turnArrow").text("<-------------");
 
       if (playerTwo.totalScore >= 100){
-        alert("Player Two Wins!");
+        alert("autoPig IS VICTORIOUS.");
         $("form#form").show();
         $(".game").hide();
         reset(players);
