@@ -11,6 +11,28 @@ function isOdd(num){
   }
 }
 
+function autoPig() {
+  console.log("AUTOPIG ACTIVATE.");
+  //debugger;
+  var behave = Math.floor(Math.random() * 10 + 1)
+  var rolls = 0
+  playerTwo.roll();
+  rolls++;
+  while (behave - rolls > 0){
+    if ((dieResult[0] === dieResult[1]) && (dieResult[0] != 1)){
+      playerTwo.roll();
+      rolls++;
+
+    }else if (behave-rolls > 3){
+      playerTwo.roll();
+      rolls++;
+    } else {
+      playerTwo.hold();
+      break;
+    }
+  }
+}
+
 // player object stuff ---------
 function Player(name) {
   this.name = name;
@@ -95,9 +117,24 @@ $(document).ready(function() {
     } else {
       $("#turnArrow").text("------------->");
     }
+    if ((isOdd(turn) === false) && ($("input:radio[name=playersNumber]:checked").val() === "1")) {
+      console.log("AUTOPIG ENGAGED");
+      autoPig();
+      $("#playerTwoTotalScore").text(playerTwo.totalScore);
+      $("#playerTwoTurnScore").text(playerTwo.turnScore);
+      $("#turnArrow").text("<-------------");
+
+      if (playerTwo.totalScore >= 100){
+        alert("Player Two Wins!");
+        $("form#form").show();
+        $(".game").hide();
+        reset(players);
+      }
+    }
   })
 
   $("#hold").click(function() {
+  //  debugger;
     if (isOdd(turn)) {
       playerOne.hold();
       $("#playerOneTotalScore").text(playerOne.totalScore);
@@ -105,6 +142,8 @@ $(document).ready(function() {
 
       if (playerOne.totalScore >= 100){
         alert("Player One Wins!");
+        $("form#form").show();
+        $(".game").hide();
         reset(players);
       }
     } else {
@@ -113,7 +152,9 @@ $(document).ready(function() {
       $("#playerTwoTurnScore").text(playerTwo.turnScore);
 
       if (playerTwo.totalScore >= 100){
-        alert("Player Two Wins!")
+        alert("Player Two Wins!");
+        $("form#form").show();
+        $(".game").hide();
         reset(players);
       }
     }
@@ -123,7 +164,23 @@ $(document).ready(function() {
     } else {
       $("#turnArrow").text("------------->");
     }
-  })
+    if ((isOdd(turn) === false) && ($("input:radio[name=playersNumber]:checked").val() === "1")) {
+      console.log("AUTOPIG ENGAGED");
+      autoPig();
+      $("#playerTwoTotalScore").text(playerTwo.totalScore);
+      $("#playerTwoTurnScore").text(playerTwo.turnScore);
+      $("#turnArrow").text("<-------------");
+
+      if (playerTwo.totalScore >= 100){
+        alert("Player Two Wins!");
+        $("form#form").show();
+        $(".game").hide();
+        reset(players);
+      }
+    }
+  })//Hold Function END
+
+
   function reset(players){
     for (var i=0;i<players.length;i++) {
       console.log(players.length);
@@ -149,6 +206,8 @@ $(document).ready(function() {
       event.preventDefault();
       playerOne.name = $("#inputPlayerOneName").val();
       playerTwo.name = $("#inputPlayerTwoName").val();
+      $("#playerOneName").text(playerOne.name);
+      $("#playerTwoName").text(playerTwo.name);
       $("form#form").hide();
       $(".game").show();
     })
